@@ -1,0 +1,43 @@
+/* Định dạng chung */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Thanh menu */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Khung nội dung */
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Danh sách truyện */
+.story-list {
+    list-style: none;
+    padding: 0;
+}
+
+.story-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.story-list li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
