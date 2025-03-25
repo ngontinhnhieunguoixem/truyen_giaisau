@@ -3,57 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Truyện</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            font-size: 24px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .story-list {
-            list-style: none;
-            padding: 0;
-        }
-        .story-list li {
-            background: #fff;
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-        a {
-            text-decoration: none;
-            color: #007BFF;
-            font-weight: bold;
-        }
-    </style>
+    <title>Trang Truyện</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>Chào mừng đến với Blog Truyện!</header>
-    <div class="container">
-        <p>Chọn truyện để đọc:</p>
-        <ul class="story-list">
-            <li><a href="#">Truyện 1</a></li>
-            <li><a href="#">Truyện 2</a></li>
-            <li><a href="#">Truyện 3</a></li>
-        </ul>
-    </div>
+    <header>
+        <div class="logo">TruyenHD</div>
+        <nav>
+            <ul>
+                <li><a href="#">Danh Sách</a></li>
+                <li><a href="#">Thể Loại</a></li>
+                <li><a href="#">Tài Khoản</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Nhập tên truyện...">
+            <button>Tìm kiếm</button>
+        </div>
+    </header>
+    
+    <section class="truyen-hot">
+        <h2>Truyện Hot</h2>
+        <div class="slider">
+            <div class="truyen-item">Truyện 1</div>
+            <div class="truyen-item">Truyện 2</div>
+            <div class="truyen-item">Truyện 3</div>
+        </div>
+    </section>
+    
+    <section class="danh-sach-truyen">
+        <h2>Danh Sách Truyện</h2>
+        <div class="filter">
+            <button>Tiên Hiệp</button>
+            <button>Kiếm Hiệp</button>
+            <button>Ngôn Tình</button>
+        </div>
+        <div class="grid">
+            <div class="truyen">Truyện A</div>
+            <div class="truyen">Truyện B</div>
+            <div class="truyen">Truyện C</div>
+        </div>
+    </section>
 </body>
 </html>
-  
