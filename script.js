@@ -16,3 +16,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+function danhSoThuTu() {
+    let danhSachTruyen = document.querySelectorAll(".truyen");
+
+    let soThuTu = {}; // Lưu số thứ tự theo thể loại
+
+    danhSachTruyen.forEach(truyen => {
+        let theLoai = truyen.getAttribute("data-theloai");
+        if (!soThuTu[theLoai]) {
+            soThuTu[theLoai] = 1; // Bắt đầu từ số 1
+        } else {
+            soThuTu[theLoai]++; // Tăng số thứ tự
+        }
+        truyen.innerText = `${soThuTu[theLoai]}. ${truyen.innerText.split(". ")[1] || truyen.innerText}`;
+    });
+}
+
+// Gọi hàm sau khi nội dung đã tải xong
+document.addEventListener("DOMContentLoaded", danhSoThuTu);
