@@ -60,3 +60,31 @@ nav ul li a {
     color: #007bff;
     font-weight: bold;
 }
+.danh-sach-truyen {
+    text-align: center; /* Căn giữa nội dung */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%; /* Giới hạn chiều rộng */
+}
+
+.truyen {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.filter {
+    display: flex;
+    justify-content: center; /* Căn giữa nút lọc */
+    gap: 10px;
+    margin-bottom: 10px;
+}
