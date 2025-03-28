@@ -1,2 +1,23 @@
-<iframe src="https://ngontinhnhieunguoixem.blogspot.com/2025/03/muc-luc-tro-choi-sinh-ton-tan-ta-dua.html" width="100%" height="800px" style="border:none;"></iframe>
+<div id="blog-content"></div>
 
+<script>
+async function fetchBlogPost() {
+const blogUrl = "https://truyenngontinh.blogspot.com/feeds/posts/default?alt=json";
+try {
+        const response = await fetch(blogUrl);
+        const data = await response.json();
+        const entry = data.feed.entry[0]; // Lấy bài viết mới nhất
+        const title = entry.title.$t;
+        const content = entry.content.$t;
+
+        document.getElementById("blog-content").innerHTML = `
+            <h2>${title}</h2>
+            <div>${content}</div>
+        `;
+    } catch (error) {
+        document.getElementById("blog-content").innerHTML = "Không thể tải bài viết!";
+        console.error("Lỗi:", error);
+    }
+}
+fetchBlogPost();
+</script>
