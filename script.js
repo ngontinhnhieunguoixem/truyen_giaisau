@@ -34,3 +34,7 @@ function danhSoThuTu() {
 
 // Gọi hàm sau khi nội dung đã tải xong
 document.addEventListener("DOMContentLoaded", danhSoThuTu);
+document.querySelector(".dang-truyen-btn").addEventListener("click", function() {
+    window.location.href = "dangtruyen.html";
+});
+
