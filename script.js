@@ -37,4 +37,12 @@ document.addEventListener("DOMContentLoaded", danhSoThuTu);
 document.querySelector(".dang-truyen-btn").addEventListener("click", function() {
     window.location.href = "dangtruyen.html";
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const btnDangTruyen = document.getElementById("btnDangTruyen");
+    if (btnDangTruyen) {
+        btnDangTruyen.addEventListener("click", function () {
+            window.location.href = "dangtruyen.html"; // Chuyển hướng đến trang đăng truyện
+        });
+    }
+});
 
