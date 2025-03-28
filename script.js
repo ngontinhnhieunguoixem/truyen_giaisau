@@ -1,46 +1,63 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const buttons = document.querySelectorAll(".filter button"); // Lấy tất cả nút thể loại
-    const stories = document.querySelectorAll(".truyen"); // Lấy tất cả truyện
+    fetch("https://ngontinhnhieunguoixem.blogspot.com/feeds/posts/default?alt=json")
+        .then(response => response.json())
+        .then(data => {
+            let posts = data.feed.entry;
+            let grid = document.getElementById("danh-sach-truyen");
+            grid.innerHTML = ""; // Xóa nội dung cũ
+
+            posts.forEach(post => {
+                let title = post.title.$t;
+                let link = post.link.find(l => l.rel === "alternate").href;
+
+                // Lấy thể loại từ nhãn (category) trong Blogger
+                let categories = post.category ? post.category.map(cat => cat.term) : ["Chưa rõ"];
+                let theloai = categories[0]; // Chọn thể loại đầu tiên
+
+                // Tạo HTML hiển thị truyện
+                let truyenHTML = `
+                    <div class="truyen" data-theloai="${theloai}">
+                        <a href="${link}" target="_blank">${title}</a>
+                    </div>
+                `;
+                grid.innerHTML += truyenHTML;
+            });
+
+            // Gọi hàm để đánh số thứ tự sau khi tải xong truyện
+            danhSoThuTu();
+        })
+        .catch(error => console.error("Lỗi khi lấy dữ liệu:", error));
+
+    // Tính năng lọc truyện theo thể loại
+    const buttons = document.querySelectorAll(".filter button");
 
     buttons.forEach(button => {
         button.addEventListener("click", function () {
-            const category = this.textContent.trim(); // Lấy thể loại từ nút bấm
-
-            stories.forEach(story => {
-                if (story.getAttribute("data-theloai").includes(category)) {
-                    story.style.display = "block"; // Hiện truyện đúng thể loại
+            let category = this.textContent.trim();
+            document.querySelectorAll(".truyen").forEach(story => {
+                if (story.getAttribute("data-theloai").includes(category) || category === "Tất Cả") {
+                    story.style.display = "block";
                 } else {
-                    story.style.display = "none"; // Ẩn truyện khác
+                    story.style.display = "none";
                 }
             });
         });
     });
-});
-function danhSoThuTu() {
-    let danhSachTruyen = document.querySelectorAll(".truyen");
 
-    let soThuTu = {}; // Lưu số thứ tự theo thể loại
+    // Hàm đánh số thứ tự theo thể loại
+    function danhSoThuTu() {
+        let danhSachTruyen = document.querySelectorAll(".truyen");
+        let soThuTu = {}; // Lưu số thứ tự theo thể loại
 
-    danhSachTruyen.forEach(truyen => {
-        let theLoai = truyen.getAttribute("data-theloai");
-        if (!soThuTu[theLoai]) {
-            soThuTu[theLoai] = 1; // Bắt đầu từ số 1
-        } else {
-            soThuTu[theLoai]++; // Tăng số thứ tự
-        }
-        truyen.innerText = `${soThuTu[theLoai]}. ${truyen.innerText.split(". ")[1] || truyen.innerText}`;
-    });
-}
-
-// Gọi hàm sau khi nội dung đã tải xong
-document.addEventListener("DOMContentLoaded", danhSoThuTu);
-document.addEventListener("DOMContentLoaded", function () {
-    const btn = document.querySelector(".dang-truyen-btn");
-    if (btn) {
-        btn.addEventListener("click", function () {
-            window.location.href = "dangtruyen.html";
+        danhSachTruyen.forEach(truyen => {
+            let theLoai = truyen.getAttribute("data-theloai");
+            if (!soThuTu[theLoai]) {
+                soThuTu[theLoai] = 1; // Bắt đầu từ số 1
+            } else {
+                soThuTu[theLoai]++; // Tăng số thứ tự
+            }
+            truyen.innerText = `${soThuTu[theLoai]}. ${truyen.innerText.split(". ")[1] || truyen.innerText}`;
         });
-    } else {
-        console.error("Không tìm thấy phần tử .dang-truyen-btn");
     }
 });
+
